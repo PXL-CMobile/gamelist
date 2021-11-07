@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoGameListApp.Views.GameDetailView"
+             xmlns:models="clr-namespace:VideoGameListApp.Models" 
+             xmlns:behaviors="clr-namespace:VideoGameListApp.Behaviors" 
+             xmlns:viewmodel="clr-namespace:VideoGameListApp.ViewModels"
+             x:DataType="viewmodel:GameDetailViewModel">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry Text="{Binding Game.Title, Mode=TwoWay}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Entry Text="{Binding Game.Genre}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Entry Text="{Binding Game.Rating}" 
+                   VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="FillAndExpand">
+                    <Entry.Behaviors>
+                        <behaviors:RatingBehavior></behaviors:RatingBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="{Binding Game.ReleaseDate}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Image VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" Source="{Binding Game.CoverPictureURL, TargetNullValue='preview.png'}"></Image>
+                <Button Text="Take picture" Command="{Binding AddPictureCommand}"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
