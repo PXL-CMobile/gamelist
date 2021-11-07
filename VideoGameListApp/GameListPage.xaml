@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:modelnamespace="clr-namespace:VideoGameListApp.Models"
+             x:Class="VideoGameListApp.GameListPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="GameListElement" ItemTapped="VideoGameTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="modelnamespace:VideoGame">
+                        <!--<ImageCell Text="{Binding Title}"
+                                   Detail="{Binding Genre}"
+                                   ImageSource="{Binding CoverPictureURL}"></ImageCell>-->
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding CoverPictureURL, TargetNullValue='preview.jpg'}"></Image>
+                                <Label Grid.Column="1" FontSize="30" Text="{Binding Title}" BackgroundColor="{Binding Rating, Converter={StaticResource RatingConverter}}"></Label>
+                                <Label Grid.Column="2" Text="{Binding Genre}"></Label>
+                                <ImageButton Grid.Column="3" Source="trash.png"  
+                                             Clicked="RemoveThisGame"
+                                             CommandParameter="{Binding .}"></ImageButton>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Add new Game" Clicked="AddANewGame"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
